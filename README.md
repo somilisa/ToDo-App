@@ -1,17 +1,18 @@
 # To_Do_App
-# Todo List
 
 This is a simple todo list web application built with HTML, CSS, and JavaScript. It allows users to add, delete, and mark tasks as completed. The application provides a clean and intuitive user interface for managing daily tasks.
 
-![Todo List Screenshot](screenshot.png)
+
 
 ## Features
 
-- Add tasks: Enter a task in the input field and press the "Enter" key or click the "+" button to add it to the list.
-- Delete tasks: Click the trash icon next to a task to remove it from the list.
-- Mark tasks as completed: Click a task to mark it as completed. Completed tasks are visually differentiated from active tasks.
-- Filter tasks: Use the filter buttons ("All," "Active," and "Completed") to toggle the visibility of tasks based on their completion status.
-- Clear completed tasks: Click the "Clear Completed" button to remove all completed tasks from the list.
+- [x] Add tasks: Enter a task in the input field and press the "Enter" key or click the "+" button to add it to the list.
+- [x] Get tasks: View added tasks
+- [x] Delete tasks: Click the trash icon next to a task to remove it from the list.
+- [x] Update tasks: Click the edit button to edit tasks.
+- [ ] Mark tasks as completed: Click a task to mark it as completed. Completed tasks are visually differentiated from active tasks.
+- [ ] Filter tasks: Use the filter buttons ("All," "Active," and "Completed") to toggle the visibility of tasks based on their completion status.
+- [ ] Clear completed tasks: Click the "Clear Completed" button to remove all completed tasks from the list.
 
 ## Installation
 
@@ -30,7 +31,7 @@ git clone https://github.com/your-username/todo-list.git
 ## Coming Soon
 1. To mark a task as completed, click on the task itself.
 2. Use the filter buttons to toggle the visibility of tasks based on their completion
-3. 6. Click the "Clear Completed" button to remove all completed tasks from the list.
+3. Click the "Clear Completed" button to remove all completed tasks from the list.
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
