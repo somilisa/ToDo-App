@@ -19,7 +19,7 @@ This is a simple todo list web application built with HTML, CSS, and JavaScript.
 To use the todo list application, simply clone the repository to your local machine or download the source code as a ZIP file. Open the `index.html` file in your web browser, and you're ready to go!
 
 ```shell
-git clone https://github.com/your-username/todo-list.git
+git clone https://github.com/somilisa/To_Do_App.git
 ```
 
 ## Usage
@@ -32,15 +32,12 @@ git clone https://github.com/your-username/todo-list.git
 1. To mark a task as completed, click on the task itself.
 2. Use the filter buttons to toggle the visibility of tasks based on their completion
 3. Click the "Clear Completed" button to remove all completed tasks from the list.
-## Contributing
 
+
+## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE). You are free to modify and distribute the code as per the terms of the license.
 
-## Acknowledgments
-
-- The design of this todo list was inspired by the TodoMVC project (http://todomvc.com/).
-- Special thanks to all the contributors who helped make this project better.
