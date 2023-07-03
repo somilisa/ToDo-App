@@ -22,8 +22,14 @@
             <input type="text" id="todo" placeholder="eggs">
             <button class="submit-btn" type="submit">Submit</button>
           </div>
-          <div id="msg"></div>
+          <!-- <div id="msg"></div> -->
+          <select name="status" id="">
+            <option value="All" onselect="showAll()">All</option>
+            <option value="completed" onselect="showCompleted()">Completed</option>
+            <option value="pending" onselect="showInProgress()">Pending</option>
+          </select>
         </form>
+
         <div id="posts">
           <div class="posts-item">
             <p>Post 1</p>
@@ -39,7 +45,13 @@
               <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
             </span>
           </div>
+          <select name="status" id="">
+            <option value="completed">completed</option>
+            <option value="pending">pending</option>
+            <option value="in progress">in progress</option>
+          </select>
         </div>
+        <button class="clear-btn">clear items</button>
         <!--<div class="todo-container">
           <p class="title"></p>
           <div class="btn-container">
