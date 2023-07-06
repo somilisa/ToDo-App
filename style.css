@@ -94,7 +94,7 @@ h3 {
   color: white;
 }
 
-.posts {
+posts {
   margin-top: 2rem;
   transition: var(--transition);
   display: flex;
@@ -102,11 +102,11 @@ h3 {
   /* visibility: hidden; */
 }
 
-.show-container {
-  visibility: visible;
+.hide-container {
+  visibility: hidden;
 }
 
-.posts-item {
+#posts div{
   display: flex;
   align-items: center;
   justify-content: space-between;

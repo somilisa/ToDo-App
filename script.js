@@ -5,6 +5,8 @@ const submitBtn = document.querySelector('.submit-btn');
 const container = document.querySelector('.todo-container');
 const todoList = document.querySelector('.todo-list');
 const clearBtn = document.querySelector('.clear-btn');
+const deleteBtn = document.getElementById('delete-btn');
+const editBtn = document.getElementById('edit-btn');
 let posts = document.getElementById('posts');
 let data = [];
 
@@ -21,8 +23,10 @@ form.addEventListener('submit', (e) => {
 });
 
 let acceptData = () => {
-  data['text'] = todo.value;
-  console.log(data);
+  // data['text'] = todo.value;
+  data.push({ text: todo.value });
+  localStorage.setItem('data', JSON.stringify(data));
+
   createPost();
 };
 
@@ -34,32 +38,36 @@ let formValidation = () => {
     editElement.innerHTML = todo.value;
     displayAlert('item edited', 'success');
     setBackToDefault();
-    saveData();
+    // saveData();
   } else {
     console.log('failure');
     displayAlert('please enter value', 'success');
   }
 };
 let createPost = () => {
-  posts.innerHTML += `
-  <div class="posts-item" >
-    <p class="title" onClick="completedPost(this)">${data.text}</p>
+  posts.innerHTML = '';
+  data.map((x, y) => {
+    return (posts.innerHTML += `
+    <div id = ${y}> 
+    <p class="title" onClick="completedPost(this)">${x.text}</p>
     <span class="options">
       <button onClick="editPost(this)"<i  class="fas fa-edit" id="edit-btn"></i></button>
       <button onClick="deletePost(this)" id="delete-btn"><i  class="fas fa-trash-alt" ></i></button>
     </span>
     </span>
     <select name="status" id="">
-    // <option value="none" selected disabled hidden>Select an Option</option>
+    // <option value="none" selected disabled hidden>select status</option>
     <option value="pending">pending</option>
     <option value="in progress">in progress</option>
     <option value="completed">completed</option>
   </select>
-  </div>
-  `;
+  </div>  
+ `);
+  });
+  clearBtn.classList.remove('hide-container');
   displayAlert('item added to the list', 'success');
   todo.value = '';
-  saveData();
+  // saveData();
 };
 function displayAlert(text, action) {
   alert.textContent = text;
@@ -73,14 +81,18 @@ function displayAlert(text, action) {
 
 let deletePost = (e) => {
   e.parentElement.parentElement.remove();
+  data.splice(e.parentElement.parentElement.id, 1);
+  localStorage.setItem('data', JSON.stringify(data));
   displayAlert('item removed from list', 'danger');
-  saveData();
+  // saveData();
 };
 let editPost = (e) => {
   editElement = e.parentElement.previousElementSibling;
   todo.value = editElement.innerHTML;
+  // data[e.parentElement.parentElement.id].text = todo.value;
+  // console.log(data[e.parentElement.parentElement.id].text);
+  // localStorage.setItem('data', JSON.stringify(data));
   editFlag = true;
-  console.log(editFlag);
   submitBtn.textContent = 'edit';
 };
 
@@ -96,24 +108,44 @@ function setBackToDefault() {
   submitBtn.textContent = 'submit';
 }
 
-const items = document.querySelectorAll('.posts-item');
 function clearItems() {
+  let items = [...document.querySelectorAll('#posts div')];
   if (items.length > 0) {
     items.forEach((item) => {
-      list.removeChild(item);
+      item.parentNode.removeChild(item);
+    });
+    clearBtn.classList.add('hide-container');
+  }
+  setBackToDefault();
+  localStorage.removeItem('data');
+}
+
+(() => {
+  data = JSON.parse(localStorage.getItem('data')) || [];
+  console.log(data);
+  createPost();
+})();
+
+let items = [...document.querySelectorAll('#posts div')];
+console.log(items);
+const result = items.filter(showAll);
+function showAll() {
+  return items;
+}
+
+function completedItems() {
+  const result = items.filter(showCompleted());
+}
+function showCompleted() {
+  if (items.length > 0) {
+    items.forEach((item) => {
+      if (item.classList.contains('completed')) {
+        return item;
+      } else {
+        item.parentNode.removeChild(item);
+      }
     });
   }
-}
-function saveData() {
-  localStorage.setItem('data', posts.innerHTML);
-}
-function showTask() {
-  posts.innerHTML = localStorage.getItem('data');
-}
-showTask();
-
-function showAll() {
-  posts.innerHTML = items.filter() 
 }
 
 // let paragraphs = [...document.querySelectorAll('.title')];

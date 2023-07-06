@@ -14,56 +14,32 @@
 
   <body>
     <main class="main">
+
       <section class="center">
+
         <form class="todo-form">
+
           <p class="alert"></p>
+
           <h3>To-Do List</h3>
+
           <div class="form-control">
             <input type="text" id="todo" placeholder="eggs">
             <button class="submit-btn" type="submit">Submit</button>
           </div>
-          <!-- <div id="msg"></div> -->
+
           <select name="status" id="">
             <option value="All" onselect="showAll()">All</option>
-            <option value="completed" onselect="showCompleted()">Completed</option>
+            <option value="completed" onselect="completedItems()">Completed</option>
             <option value="pending" onselect="showInProgress()">Pending</option>
           </select>
+
         </form>
 
-        <div id="posts">
-          <div class="posts-item">
-            <p>Post 1</p>
-            <span class="options">
-              <i onClick="editPost(this)" class="fas fa-edit" id="edit-btn"></i>
-              <i onClick="deletePost(this)" class="fas fa-trash-alt" id="delete-btn"></i>
-            </span>
-          </div>
-          <div class="posts-item">
-            <p>Post 2</p>
-            <span class="options">
-              <i onClick="editPost(this)" class="fas fa-edit"></i>
-              <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-            </span>
-          </div>
-          <select name="status" id="">
-            <option value="completed">completed</option>
-            <option value="pending">pending</option>
-            <option value="in progress">in progress</option>
-          </select>
-        </div>
-        <button class="clear-btn">clear items</button>
-        <!--<div class="todo-container">
-          <p class="title"></p>
-          <div class="btn-container">
-            <button type="button" class="edit-btn">
-              <i class="fa fa-edit"></i>
-            </button>
-            <button type="button" class="delete-btn">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-          <button type="button" "clear-btn">clear items</button>
-        </div>-->
+        <div id="posts"> </div>
+
+        <button onclick="clearItems()" class="clear-btn" class="hide-container">clear items</button>
+
 
       </section>
     </main>
