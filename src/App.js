@@ -37,7 +37,7 @@ function App() {
   return (
     <section className='center'>
       <form className='todo-form' onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={displayAlert} />}
+        {alert.show && <Alert {...alert} removeAlert={displayAlert} list={list} />}
         <h3>To-Do List</h3>
 
         <div className='form-control'>
