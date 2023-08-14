@@ -1,6 +1,6 @@
 # To_Do_App
 
-This is a simple todo list web application built with HTML, CSS, and JavaScript. It allows users to add, delete, and mark tasks as completed. The application provides a clean and intuitive user interface for managing daily tasks. The page is hosted at https://somilisa.github.io/ToDo-App/ 
+This is a simple todo list web application built with HTML, CSS, and JavaScript. It allows users to add, delete, and mark tasks as completed. The application provides a clean and intuitive user interface for managing daily tasks.
 
 
 
