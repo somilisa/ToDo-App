@@ -93,8 +93,7 @@ h3 {
   background: #49a6e9;
   color: white;
 }
-
-posts {
+.todo-list {
   margin-top: 2rem;
   transition: var(--transition);
   display: flex;
@@ -106,7 +105,7 @@ posts {
   visibility: hidden;
 }
 
-#posts div{
+.todo-list li{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -119,12 +118,12 @@ posts {
   margin: 0 auto;
 }
 
-.posts-item:hover {
+.todo-item:hover {
   color: #617d98;
   background: #f1f5f8;
 }
 
-.posts-item:hover .title {
+.todo-item:hover .title {
   color: var(--clr-grey-5);
 }
 
@@ -140,7 +139,7 @@ posts {
   text-decoration: line-through;
 }
 
-#edit-btn, #delete-btn {
+.edit-btn, .delete-btn {
   background: transparent;
   border-color: transparent;
   cursor: pointer;
@@ -148,19 +147,19 @@ posts {
   margin: 0 0.15rem;
 }
 
-#edit-btn {
+.edit-btn {
   color: #6be675;
 }
 
-#edit-btn:hover {
+.edit-btn:hover {
   color: #25bb32;
 }
 
-#delete-btn {
+.delete-btn {
   color: #e66b6b;
 }
 
-#delete-btn:hover {
+.delete-btn:hover {
   color: #bb2525;
 }
 

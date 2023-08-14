@@ -38,7 +38,6 @@ let formValidation = () => {
     editElement.innerHTML = todo.value;
     displayAlert('item edited', 'success');
     setBackToDefault();
-    // saveData();
   } else {
     console.log('failure');
     displayAlert('please enter value', 'success');
@@ -69,6 +68,7 @@ let createPost = () => {
   todo.value = '';
   // saveData();
 };
+ 
 function displayAlert(text, action) {
   alert.textContent = text;
   alert.classList.add(`alert-${action}`);
@@ -89,11 +89,11 @@ let deletePost = (e) => {
 let editPost = (e) => {
   editElement = e.parentElement.previousElementSibling;
   todo.value = editElement.innerHTML;
-  // data[e.parentElement.parentElement.id].text = todo.value;
-  // console.log(data[e.parentElement.parentElement.id].text);
-  // localStorage.setItem('data', JSON.stringify(data));
   editFlag = true;
   submitBtn.textContent = 'edit';
+  data[e.parentElement.parentElement.id].text = todo.value;
+  console.log(data[e.parentElement.parentElement.id].text);
+  localStorage.setItem('data', JSON.stringify(data));
 };
 
 function completedPost(e) {
@@ -127,7 +127,6 @@ function clearItems() {
 })();
 
 let items = [...document.querySelectorAll('#posts div')];
-console.log(items);
 const result = items.filter(showAll);
 function showAll() {
   return items;
@@ -135,15 +134,12 @@ function showAll() {
 
 function completedItems() {
   const result = items.filter(showCompleted());
+  console.log(result);
 }
 function showCompleted() {
   if (items.length > 0) {
-    items.forEach((item) => {
-      if (item.classList.contains('completed')) {
-        return item;
-      } else {
-        item.parentNode.removeChild(item);
-      }
+    items.find((item) => {
+      !item.classList.contains('completed');
     });
   }
 }
