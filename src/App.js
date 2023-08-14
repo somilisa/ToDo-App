@@ -1,6 +1,6 @@
 import React from 'react';
 import List from './List';
-// import Alert from './Alert';
+import Alert from './Alert';
 
 function App() {
   const [value, setValue] = React.useState('');
@@ -11,21 +11,24 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!value) {
-      //display alert
+      displayAlert(true, 'Pls enter a value', 'danger');
     } else if (value && editFlag) {
       //deal with edit
     } else {
+      displayAlert(true,"Value entered","success")
       const newItem = { id: crypto.randomUUID(), name: value };
       setList([...list, newItem]);
       console.log('hello world');
       setValue('');
     }
   };
+  function displayAlert(show = false, msg = '', type = '') {
+    setAlert({ show: show, msg: msg, type: type });
+  }
   return (
     <section className='center'>
       <form className='todo-form' onSubmit={handleSubmit}>
-        <p className='alert'></p>
-
+      {alert.show && <Alert {...alert} removeAlert={displayAlert}/>}
         <h3>To-Do List</h3>
 
         <div className='form-control'>
@@ -41,7 +44,6 @@ function App() {
           </button>
         </div>
       </form>
-      {/* {alert.show && <Alert />} */}
       <div id='todo-Container'>
         <List items={list} />
         <button
