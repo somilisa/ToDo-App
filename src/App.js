@@ -15,20 +15,29 @@ function App() {
     } else if (value && editFlag) {
       //deal with edit
     } else {
-      displayAlert(true,"Value entered","success")
+      displayAlert(true, 'Item added to list', 'success');
       const newItem = { id: crypto.randomUUID(), name: value };
       setList([...list, newItem]);
       console.log('hello world');
       setValue('');
     }
   };
-  function displayAlert(show = false, msg = '', type = '') {
+  const displayAlert = (show = false, msg = '', type = '') => {
     setAlert({ show: show, msg: msg, type: type });
+  };
+  const clearList = () => {
+    displayAlert(true, 'empty list', 'danger');
+    setList([]);
+  };
+  const removeItem = (id) => {
+    displayAlert(true, "Item removed", "danger")
+    setList(list.filter((item)=> item.id !== id));
   }
+
   return (
     <section className='center'>
       <form className='todo-form' onSubmit={handleSubmit}>
-      {alert.show && <Alert {...alert} removeAlert={displayAlert}/>}
+        {alert.show && <Alert {...alert} removeAlert={displayAlert} />}
         <h3>To-Do List</h3>
 
         <div className='form-control'>
@@ -44,16 +53,18 @@ function App() {
           </button>
         </div>
       </form>
-      <div id='todo-Container'>
-        <List items={list} />
-        <button
-          onclick='clearItems()'
-          className='clear-btn'
-          // className='hide-container'
-        >
-          clear items
-        </button>
-      </div>
+      {list.length > 0 && (
+        <div id='todo-Container'>
+          <List items={list} removeItem={removeItem}/>
+          <button
+            onClick={clearList}
+            className='clear-btn'
+            // className='hide-container'
+          >
+            clear items
+          </button>
+        </div>
+      )}
     </section>
   );
 }
