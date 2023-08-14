@@ -13,31 +13,51 @@ function App() {
     if (!value) {
       displayAlert(true, 'Pls enter a value', 'danger');
     } else if (value && editFlag) {
-      //deal with edit
+      displayAlert(true, 'Item updated', 'success');
+      setList(
+        list.map((item) => {
+          if (item.id === editID) {
+            return { ...item, name: value };
+          }
+          return item;
+        })
+      );
+      setValue('');
+      setEditID(null);
+      setEditFlag(false);
     } else {
       displayAlert(true, 'Item added to list', 'success');
       const newItem = { id: crypto.randomUUID(), name: value };
       setList([...list, newItem]);
-      console.log('hello world');
       setValue('');
     }
   };
-  const displayAlert = (show = false, msg = '', type = '') => {
-    setAlert({ show: show, msg: msg, type: type });
-  };
+  const displayAlert = React.useCallback(
+    (show = false, msg = '', type = '') => {
+      setAlert({ show: show, msg: msg, type: type });
+    },
+    []
+  );
   const clearList = () => {
     displayAlert(true, 'empty list', 'danger');
     setList([]);
   };
   const removeItem = (id) => {
-    displayAlert(true, "Item removed", "danger")
-    setList(list.filter((item)=> item.id !== id));
-  }
-
+    displayAlert(true, 'Item removed', 'danger');
+    setList(list.filter((item) => item.id !== id));
+  };
+  const editItem = (id) => {
+    const targetItem = list.find((item) => item.id === id);
+    setEditFlag(true);
+    setEditID(id);
+    setValue(targetItem.name);
+  };
   return (
     <section className='center'>
       <form className='todo-form' onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={displayAlert} list={list} />}
+        {alert.show && (
+          <Alert {...alert} removeAlert={displayAlert} list={list} />
+        )}
         <h3>To-Do List</h3>
 
         <div className='form-control'>
@@ -55,7 +75,7 @@ function App() {
       </form>
       {list.length > 0 && (
         <div id='todo-Container'>
-          <List items={list} removeItem={removeItem}/>
+          <List items={list} removeItem={removeItem} editItem={editItem} />
           <button
             onClick={clearList}
             className='clear-btn'
