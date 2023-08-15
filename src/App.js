@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from  'react';
 import List from './List';
 import Alert from './Alert';
 
@@ -64,9 +64,7 @@ function App() {
   };
   useEffect(() => {
     localStorage.setItem('list',JSON.stringify(list))
-    return () => {
-      cleanup
-    }
+   
   }, [list])
   return (
     <section className='center'>
