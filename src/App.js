@@ -2,9 +2,19 @@ import React from 'react';
 import List from './List';
 import Alert from './Alert';
 
+const getLocalStorage = () => {
+  let list = localStorage.getItem('list');
+  if (list) {
+    return JSON.parse(list)
+  }
+  else{
+    return []
+  }
+}
+
 function App() {
   const [value, setValue] = React.useState('');
-  const [list, setList] = React.useState([]);
+  const [list, setList] = React.useState(getLocalStorage())
   const [editFlag, setEditFlag] = React.useState(false);
   const [editID, setEditID] = React.useState(null);
   const [alert, setAlert] = React.useState({ show: false, msg: '', type: '' });
@@ -52,6 +62,12 @@ function App() {
     setEditID(id);
     setValue(targetItem.name);
   };
+  useEffect(() => {
+    localStorage.setItem('list',JSON.stringify(list))
+    return () => {
+      cleanup
+    }
+  }, [list])
   return (
     <section className='center'>
       <form className='todo-form' onSubmit={handleSubmit}>
